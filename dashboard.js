@@ -114,6 +114,20 @@
   // initial render of socials on dashboard load
   setTimeout(renderSocials, 400);
 
+  // Sidebar collapse handling
+  const side = document.getElementById('side-nav');
+  const toggle = document.getElementById('sidebar-toggle');
+  function applySidebarState(collapsed){
+    if(collapsed) side.classList.add('collapsed'); else side.classList.remove('collapsed');
+    localStorage.setItem('visionvt_sidebar_collapsed', collapsed ? '1' : '0');
+  }
+  toggle.addEventListener('click', ()=>{
+    const isCollapsed = side.classList.toggle('collapsed');
+    localStorage.setItem('visionvt_sidebar_collapsed', isCollapsed ? '1' : '0');
+  });
+  // restore
+  if(localStorage.getItem('visionvt_sidebar_collapsed') === '1') applySidebarState(true);
+
   // --- guided tour ---
   const tourEl = byId('tour');
   const tourTitle = byId('tour-title');
