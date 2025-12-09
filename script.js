@@ -16,8 +16,12 @@
   // NOTE: This is intentionally minimal and client-side only. Do NOT use for sensitive accounts.
   // The username and password below were provided by the user and are stored in this file.
   // Lightweight login-only script: validates local credentials and redirects to dashboard.html
-  const ALLOWED_USERNAME = 'eastonvteggers';
+  // Default account username can be changed in Settings (stored in localStorage as 'visionvt_account_username')
+  const DEFAULT_USERNAME = 'eastonvteggers';
   const ALLOWED_PASSWORD = 'Creativity9918EE';
+  function getAllowedUsername(){
+    return localStorage.getItem('visionvt_account_username') || DEFAULT_USERNAME;
+  }
 
   const form = document.getElementById('login-form');
   const result = document.getElementById('login-result');
@@ -27,8 +31,8 @@
     const username = document.getElementById('username').value.trim();
     const pass = document.getElementById('passphrase').value;
 
-    if(username !== ALLOWED_USERNAME){
-      result.textContent = 'Unknown username.';
+    if(username !== getAllowedUsername()){
+      result.textContent = 'Unknown username. If you need an account, click Sign up.';
       result.style.color = 'salmon';
       return;
     }

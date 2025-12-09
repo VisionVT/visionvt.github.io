@@ -28,6 +28,17 @@
         </section>
 
         <section style="margin-top:18px;">
+          <h2>Account</h2>
+          <p>Change your account username (this updates the username that can sign in).</p>
+          <form id="account-form">
+            <label for="account-username">Account username</label>
+            <input id="account-username" placeholder="username" />
+            <div class="actions"><button id="save-account" type="button">Save username</button></div>
+          </form>
+          <p class="note">Note: Passwords are currently managed by VisionVT and remain unchanged here.</p>
+        </section>
+
+        <section style="margin-top:18px;">
           <h2>AI provider keys (stored locally)</h2>
           <p>Paste API keys here to enable calling providers from the AI page. Keys are kept in your browser localStorage.</p>
           <form id="ai-keys-form">

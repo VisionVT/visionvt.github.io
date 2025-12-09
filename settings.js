@@ -70,4 +70,21 @@
   renderSocials();
   loadKeys();
 
+  // Account username handling
+  const accountInput = document.getElementById('account-username');
+  const saveAccountBtn = document.getElementById('save-account');
+
+  function loadAccount(){
+    accountInput.value = localStorage.getItem('visionvt_account_username') || '';
+  }
+
+  saveAccountBtn.addEventListener('click', ()=>{
+    const v = (accountInput.value || '').trim();
+    if(!v){ alert('Username cannot be empty'); return; }
+    localStorage.setItem('visionvt_account_username', v);
+    alert('Account username saved locally. Use this username to sign in.');
+  });
+
+  loadAccount();
+
 })();
