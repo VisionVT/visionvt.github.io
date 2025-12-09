@@ -26,3 +26,20 @@ input{padding:8px;border-radius:6px;border:1px solid rgba(255,255,255,0.06);back
 button[type="submit"]{background:var(--accent);border:none;color:#042022;padding:8px 12px;border-radius:8px;cursor:pointer}
 .note{font-size:0.85rem;color:rgba(230,238,246,0.8)}
 footer{margin-top:16px;text-align:right;font-size:0.8rem;color:rgba(230,238,246,0.6)}
+
+/* Dashboard styles */
+.dash-header{display:flex;align-items:center;justify-content:space-between}
+.cards{display:flex;gap:12px;margin-top:12px;flex-wrap:wrap}
+.card{background:rgba(255,255,255,0.02);padding:12px;border-radius:8px;flex:1;min-width:160px}
+.card h3{margin:0 0 6px 0;font-size:0.95rem}
+.card p{font-size:1.2rem;margin:0}
+.dash-actions{margin-top:12px;display:flex;gap:8px}
+
+/* Tour modal */
+.tour{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(2,6,23,0.7);z-index:60}
+.tour.hidden{display:none}
+.tour-card{background:var(--card);padding:18px;border-radius:10px;max-width:520px;width:90%;box-shadow:0 10px 40px rgba(0,0,0,0.6)}
+.tour-card h3{margin-top:0}
+.tour-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:12px}
+.tour-actions button{padding:8px 10px;border-radius:8px;border:none;cursor:pointer;background:var(--accent);color:#042022}
+
