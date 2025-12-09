@@ -28,6 +28,21 @@
         </section>
 
         <section style="margin-top:18px;">
+          <h2>Homepage</h2>
+          <p>Control what appears on your home/dashboard page.</p>
+          <label><input type="checkbox" id="home-show-links" /> Show related links column</label>
+
+          <form id="home-widget-form" style="margin-top:10px;">
+            <h3 style="margin:6px 0">Add custom home widget</h3>
+            <input id="home-widget-title" placeholder="Title (e.g., Welcome)" />
+            <input id="home-widget-text" placeholder="Short text to show on home" />
+            <div class="actions"><button type="submit">Add widget</button></div>
+          </form>
+
+          <ul id="home-widgets-list" style="margin-top:12px"></ul>
+        </section>
+
+        <section style="margin-top:18px;">
           <h2>Account</h2>
           <p>Change your account username (this updates the username that can sign in).</p>
           <form id="account-form">

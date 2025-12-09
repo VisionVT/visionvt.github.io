@@ -80,7 +80,7 @@
       const side = document.getElementById('side-nav');
       if(side && localStorage.getItem('visionvt_sidebar_collapsed') === '1') side.classList.add('collapsed');
       // render socials minimally
-      setTimeout(renderSocials, 400);
+      setTimeout(()=>{ renderSocials(); renderHomeWidgets(); }, 400);
     } else {
       loadDashboard(current);
     }
@@ -120,6 +120,25 @@
       // Default: show link and let user know some providers need keys/server
       span.innerHTML = `<a href="${s.url}" target="_blank" rel="noopener">Open</a>`;
     });
+  }
+
+  // Home widgets and related-links visibility
+  function loadHomeShow(){ return localStorage.getItem('visionvt_home_show_links') === '1'; }
+  function loadHomeWidgets(){ const raw = localStorage.getItem('visionvt_home_widgets'); return raw ? JSON.parse(raw) : []; }
+
+  function renderHomeWidgets(){
+    const container = document.getElementById('home-widgets');
+    if(!container) return;
+    const widgets = loadHomeWidgets();
+    container.innerHTML = '';
+    widgets.forEach(w=>{
+      const card = document.createElement('div'); card.className = 'card';
+      card.innerHTML = `<h3>${w.title}</h3><div class="card-body"><div>${w.text || ''}</div></div>`;
+      container.appendChild(card);
+    });
+    // show/hide related links column based on setting
+    const relatedCol = document.querySelector('.col-right');
+    if(relatedCol){ relatedCol.style.display = loadHomeShow() ? '' : 'none'; }
   }
 
   // initial render of socials on dashboard load
