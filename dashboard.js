@@ -146,6 +146,9 @@
     // show/hide related links column based on setting
     const relatedCol = document.querySelector('.col-right');
     if(relatedCol){ relatedCol.style.display = loadHomeShow() ? '' : 'none'; }
+    // hide empty-state if widgets exist
+    const emptyState = document.querySelector('.empty-state');
+    if(emptyState){ emptyState.style.display = widgets.length > 0 ? 'none' : ''; }
   }
 
   // initial render of socials on dashboard load
