@@ -14,54 +14,22 @@
 
       <main>
         <section id="login" class="panel active">
-          <h2>Sign in</h2>
-          <form id="login-form">
-            <label for="username">Username</label>
-            <input id="username" name="username" autocomplete="username" required />
-            <label for="passphrase">Password</label>
-            <input id="passphrase" name="passphrase" type="password" autocomplete="current-password" required />
-            <div class="actions">
-              <button type="submit">Sign in</button>
-            </div>
-          </form>
-          <div id="login-result" aria-live="polite"></div>
-          <p class="note">This is a minimal client-side login page for prototypes. Not secure for real accounts.</p>
-        </section>
-
-        <section id="dashboard" class="panel">
-          <div class="dash-header">
-            <h2 id="dash-welcome">Dashboard</h2>
-            <div>
-              <button id="logout-btn" class="tab">Log out</button>
-            </div>
-          </div>
-
-          <div class="cards">
-            <div class="card">
-              <h3>Total visits</h3>
-              <p id="total-visits">—</p>
-            </div>
-            <div class="card">
-              <h3>Today's visits</h3>
-              <p id="today-visits">—</p>
-            </div>
-            <div class="card">
-              <h3>Your visits</h3>
-              <p id="user-visits">—</p>
-            </div>
-          </div>
-
-          <div class="dashboard-note">
-            <p>Analytics are powered by a simple public counter (CountAPI) and local browser tracking. Totals reflect increments when users sign in.</p>
-          </div>
-
-          <div class="dash-actions">
-            <button id="reset-tour">Reset tour</button>
-            <button id="show-tour">Show tour</button>
+          <div class="login-card">
+            <h2>Sign in</h2>
+            <form id="login-form">
+              <label for="username">Username</label>
+              <input id="username" name="username" autocomplete="username" required />
+              <label for="passphrase">Password</label>
+              <input id="passphrase" name="passphrase" type="password" autocomplete="current-password" required />
+              <div class="actions">
+                <button type="submit">Sign in</button>
+              </div>
+            </form>
+            <div id="login-result" aria-live="polite"></div>
+            <p class="note">This is a minimal client-side login page for prototypes. Not secure for real accounts.</p>
           </div>
         </section>
       </main>
-
       <footer>
         <small>Signed-in state is stored locally in the browser only.</small>
       </footer>
