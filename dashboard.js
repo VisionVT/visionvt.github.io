@@ -42,6 +42,25 @@
       alert('Tour reset. It will show automatically next sign-in.');
     });
 
+    // render published list and comments (placeholder content)
+    const published = byId('published-list');
+    if(published){
+      published.innerHTML = '';
+      const demos = [
+        {title:'Installing Windows 11 On My Steam Deck', views:4},
+        {title:'Looking at the NuEyes Pro 4 For blind people', views:2},
+        {title:'Putting Windows 8.1 On My Steam Deck', views:2}
+      ];
+      demos.forEach(d=>{
+        const li = document.createElement('li');
+        li.innerHTML = `<div class="thumb">IMG</div><div class="vmeta"><strong>${d.title}</strong><div class="meta">${d.views} views</div></div>`;
+        published.appendChild(li);
+      });
+    }
+
+    const comments = byId('comments-list');
+    if(comments){ comments.innerHTML = '<li>No comments yet</li>'; }
+
     // Auto-show tour for new users
     if(!localStorage.getItem('tour_seen_' + username)){
       setTimeout(showTour, 400);

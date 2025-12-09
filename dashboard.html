@@ -1,49 +1,107 @@
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>VisionVT — Dashboard</title>
-    <link rel="stylesheet" href="styles.css">
-  </head>
-  <body>
-    <div class="container">
-      <header>
-        <h1>VisionVT — Dashboard</h1>
-        <nav class="header-actions">
-          <a href="ai.html" class="tab">AI</a>
-          <a href="settings.html" class="tab">Settings</a>
-          <button id="logout-btn" class="tab">Log out</button>
+    <div class="dashboard-root">
+      <aside class="side-nav">
+        <div class="brand">
+          <div class="avatar">VT</div>
+          <div class="brand-info">
+            <strong>VisionVT</strong>
+            <small>Creator</small>
+          </div>
+        </div>
+
+        <nav class="nav-list">
+          <a class="nav-item active"><span class="icon">🏠</span><span class="label">Dashboard</span></a>
+          <a class="nav-item"><span class="icon">🎬</span><span class="label">Content</span></a>
+          <a class="nav-item"><span class="icon">📈</span><span class="label">Analytics</span></a>
+          <a class="nav-item"><span class="icon">🧑‍🤝‍🧑</span><span class="label">Community</span></a>
+          <a class="nav-item"><span class="icon">🎛️</span><span class="label">Customization</span></a>
+          <a class="nav-item" href="settings.html"><span class="icon">⚙️</span><span class="label">Settings</span></a>
         </nav>
-      </header>
 
-      <main>
-        <div class="dash-header">
-          <h2 id="dash-welcome">Dashboard</h2>
+        <div class="side-footer">
+          <button id="logout-btn" class="logout">Log out</button>
         </div>
+      </aside>
 
-        <div class="cards">
-          <div class="card">
-            <h3>Total visits</h3>
-            <p id="total-visits">—</p>
+      <div class="main-area">
+        <header class="topbar">
+          <div class="top-left">
+            <h1>Dashboard</h1>
+            <div class="search">
+              <input id="global-search" placeholder="Search across your channel" />
+            </div>
           </div>
-          <div class="card">
-            <h3>Today's visits</h3>
-            <p id="today-visits">—</p>
-          </div>
-          <div class="card">
-            <h3>Your visits</h3>
-            <p id="user-visits">—</p>
-          </div>
-        </div>
+          <nav class="top-actions">
+            <a href="ai.html" class="tab">AI</a>
+            <a href="settings.html" class="tab small">Settings</a>
+          </nav>
+        </header>
 
-        <div class="dashboard-note">
-          <p>Analytics are powered by a simple public counter (CountAPI) and local browser tracking. Totals reflect increments when users sign in.</p>
-        </div>
+        <main class="main-grid">
+          <section class="col-left">
+            <div class="card large">
+              <h3>Latest YouTube Short performance</h3>
+              <div class="card-body">
+                <div class="media-placeholder">COMING SOON!!!!!</div>
+                <div class="media-stats">
+                  <div>Views: <span>—</span></div>
+                  <div>Comments: <span>—</span></div>
+                  <div>Likes: <span>—</span></div>
+                </div>
+              </div>
+            </div>
 
-        <section class="socials">
-          <h3>Your social links</h3>
-          <p>Add links in <a href="settings.html">Settings</a>. GitHub follower counts are fetched automatically when possible.</p>
+            <div class="card">
+              <h3>Published videos</h3>
+              <div class="card-body">
+                <ul class="video-list" id="published-list">
+                  <!-- items populated by dashboard.js -->
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <section class="col-center">
+            <div class="card">
+              <h3>Channel analytics</h3>
+              <div class="card-body">
+                <div class="analytics">
+                  <div class="big-number" id="total-visits">—</div>
+                  <div class="mini">Today: <span id="today-visits">—</span></div>
+                  <div class="mini">Your visits: <span id="user-visits">—</span></div>
+                </div>
+                <div class="summary">Summary: basic analytics via CountAPI and local tracking.</div>
+              </div>
+            </div>
+
+            <div class="card">
+              <h3>Comments</h3>
+              <div class="card-body">
+                <ul id="comments-list">
+                  <li>No comments yet</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <aside class="col-right">
+            <div class="card small">
+              <h3>News</h3>
+              <div class="card-body">Latest creator news and notes.</div>
+            </div>
+
+            <div class="card small">
+              <h3>Your social links</h3>
+              <ul id="social-list"></ul>
+            </div>
+          </aside>
+        </main>
+
+        <footer class="page-foot">
+          <small>Signed-in state is stored locally in the browser only.</small>
+        </footer>
+      </div>
+    </div>
           <ul id="social-list"></ul>
         </section>
 
