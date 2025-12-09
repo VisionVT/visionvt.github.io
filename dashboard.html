@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>VisionVT — Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>VisionVT — Dashboard</h1>
+        <nav class="header-actions">
+          <a href="ai.html" class="tab">AI</a>
+          <a href="settings.html" class="tab">Settings</a>
+          <button id="logout-btn" class="tab">Log out</button>
+        </nav>
+      </header>
+
+      <main>
+        <div class="dash-header">
+          <h2 id="dash-welcome">Dashboard</h2>
+        </div>
+
+        <div class="cards">
+          <div class="card">
+            <h3>Total visits</h3>
+            <p id="total-visits">—</p>
+          </div>
+          <div class="card">
+            <h3>Today's visits</h3>
+            <p id="today-visits">—</p>
+          </div>
+          <div class="card">
+            <h3>Your visits</h3>
+            <p id="user-visits">—</p>
+          </div>
+        </div>
+
+        <div class="dashboard-note">
+          <p>Analytics are powered by a simple public counter (CountAPI) and local browser tracking. Totals reflect increments when users sign in.</p>
+        </div>
+
+        <section class="socials">
+          <h3>Your social links</h3>
+          <p>Add links in <a href="settings.html">Settings</a>. GitHub follower counts are fetched automatically when possible.</p>
+          <ul id="social-list"></ul>
+        </section>
+
+        <div class="dash-actions">
+          <button id="reset-tour">Reset tour</button>
+          <button id="show-tour">Show tour</button>
+        </div>
+      </main>
+
+      <footer>
+        <small>Signed-in state is stored locally in the browser only.</small>
+      </footer>
+    </div>
+
+    <!-- Guided tour modal -->
+    <div id="tour" class="tour hidden" aria-hidden="true">
+      <div class="tour-card">
+        <h3 id="tour-title"></h3>
+        <p id="tour-text"></p>
+        <div class="tour-actions">
+          <button id="tour-prev">Back</button>
+          <button id="tour-next">Next</button>
+          <button id="tour-close">Close</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="dashboard.js"></script>
+  </body>
+</html>

@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>VisionVT — AI</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>AI</h1>
+        <nav class="header-actions">
+          <a href="dashboard.html" class="tab">Back</a>
+          <a href="settings.html" class="tab">Settings</a>
+        </nav>
+      </header>
+
+      <main>
+        <section>
+          <h2>Choose provider</h2>
+          <select id="ai-provider">
+            <option value="openai">OpenAI</option>
+            <option value="anthropic">Anthropic</option>
+            <option value="google">Google (Vertex)</option>
+            <option value="github">GitHub AI</option>
+          </select>
+
+          <div style="margin-top:12px;">
+            <textarea id="ai-prompt" placeholder="Ask something..." rows="5" style="width:100%;padding:8px;border-radius:6px;background:transparent;border:1px solid rgba(255,255,255,0.04)"></textarea>
+            <div class="actions" style="margin-top:8px">
+              <button id="send-ai">Send</button>
+            </div>
+          </div>
+
+          <section style="margin-top:18px;">
+            <h3>Response</h3>
+            <pre id="ai-response">No response yet.</pre>
+          </section>
+        </section>
+      </main>
+
+      <footer>
+        <small>Provide API keys on the <a href="settings.html">Settings</a> page to enable provider calls.</small>
+      </footer>
+    </div>
+
+    <script src="ai.js"></script>
+  </body>
+</html>

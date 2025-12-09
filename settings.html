@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>VisionVT — Settings</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Settings</h1>
+        <nav class="header-actions">
+          <a href="dashboard.html" class="tab">Back</a>
+        </nav>
+      </header>
+
+      <main>
+        <section>
+          <h2>Social links</h2>
+          <p>Add your social media links below. These will show on the dashboard.</p>
+          <form id="social-form">
+            <input id="social-name" placeholder="Name (e.g., GitHub)" required />
+            <input id="social-url" placeholder="URL (https://...)" required />
+            <div class="actions"><button type="submit">Add link</button></div>
+          </form>
+          <ul id="saved-socials"></ul>
+        </section>
+
+        <section style="margin-top:18px;">
+          <h2>AI provider keys (stored locally)</h2>
+          <p>Paste API keys here to enable calling providers from the AI page. Keys are kept in your browser localStorage.</p>
+          <form id="ai-keys-form">
+            <label>OpenAI API key</label>
+            <input id="key-openai" placeholder="sk-..." />
+            <label>Anthropic API key</label>
+            <input id="key-anthropic" placeholder="anthropic-..." />
+            <label>Google/Vertex AI key</label>
+            <input id="key-google" placeholder="API key" />
+            <label>GitHub AI token</label>
+            <input id="key-github" placeholder="ghp_..." />
+            <div class="actions">
+              <button id="save-keys" type="button">Save keys</button>
+              <button id="clear-keys" type="button">Clear keys</button>
+            </div>
+          </form>
+        </section>
+      </main>
+
+      <footer>
+        <small>Keys are stored locally in your browser's storage. Keep them private.</small>
+      </footer>
+    </div>
+
+    <script src="settings.js"></script>
+  </body>
+</html>
