@@ -2,6 +2,13 @@
 (function(){
   function byId(id){ return document.getElementById(id); }
 
+  // Apply saved theme on page load
+  (function applyTheme(){
+    const saved = localStorage.getItem('visionvt_theme') || 'light';
+    if(saved === 'system'){ document.documentElement.removeAttribute('data-theme'); }
+    else{ document.documentElement.setAttribute('data-theme', saved); }
+  })();
+
   async function incrementCount(key){
     try{
       const res = await fetch('https://api.countapi.xyz/hit/visionvt/' + encodeURIComponent(key));

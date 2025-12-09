@@ -1,5 +1,12 @@
 // Simple tab handling and client-side shared login
 (function(){
+  // Apply saved theme on page load
+  (function applyTheme(){
+    const saved = localStorage.getItem('visionvt_theme') || 'light';
+    if(saved === 'system'){ document.documentElement.removeAttribute('data-theme'); }
+    else{ document.documentElement.setAttribute('data-theme', saved); }
+  })();
+
   const TABS = document.querySelectorAll('.tab');
   const PANELS = document.querySelectorAll('.panel');
 

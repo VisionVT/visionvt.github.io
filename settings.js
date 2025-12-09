@@ -90,4 +90,24 @@
 
   loadAccount();
 
+  // --- Theme controls ---
+  const themeRadios = document.querySelectorAll('input[name="theme"]');
+  const saveThemeBtn = document.getElementById('save-theme');
+
+  function loadTheme(){
+    const saved = localStorage.getItem('visionvt_theme') || 'light';
+    document.documentElement.setAttribute('data-theme', saved === 'system' ? '' : saved);
+    themeRadios.forEach(r=>r.checked = r.value === saved);
+  }
+
+  saveThemeBtn && saveThemeBtn.addEventListener('click', ()=>{
+    const selected = Array.from(themeRadios).find(r=>r.checked)?.value || 'light';
+    localStorage.setItem('visionvt_theme', selected);
+    if(selected === 'system'){ document.documentElement.removeAttribute('data-theme'); }
+    else{ document.documentElement.setAttribute('data-theme', selected); }
+    alert('Theme saved.');
+  });
+
+  loadTheme();
+
 })();
