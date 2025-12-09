@@ -67,12 +67,23 @@
     }
   }
 
-  // Redirect to login if not signed in
+  // Redirect to login if not signed in, otherwise handle empty-state pages specially
   const current = localStorage.getItem('visionvt_logged_in_user');
   if(!current){
     window.location.href = 'index.html';
   } else {
-    loadDashboard(current);
+    // if this page is the minimal empty-state, attach only lightweight handlers and skip full dashboard init
+    if(document.querySelector('.empty-state')){
+      const logoutBtn = byId('logout-btn');
+      if(logoutBtn){ logoutBtn.addEventListener('click', ()=>{ localStorage.removeItem('visionvt_logged_in_user'); window.location.href = 'index.html'; }); }
+      // restore sidebar collapse if present
+      const side = document.getElementById('side-nav');
+      if(side && localStorage.getItem('visionvt_sidebar_collapsed') === '1') side.classList.add('collapsed');
+      // render socials minimally
+      setTimeout(renderSocials, 400);
+    } else {
+      loadDashboard(current);
+    }
   }
 
   // Load socials configured in settings and attempt to fetch viewer counts
