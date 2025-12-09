@@ -34,41 +34,10 @@
     nameInput.value = ''; urlInput.value = ''; renderSocials();
   });
 
-  // AI keys handling
-  const keyOpen = document.getElementById('key-openai');
-  const keyAnthropic = document.getElementById('key-anthropic');
-  const keyGoogle = document.getElementById('key-google');
-  const keyGitHub = document.getElementById('key-github');
-  const saveBtn = document.getElementById('save-keys');
-  const clearBtn = document.getElementById('clear-keys');
-
-  function loadKeys(){
-    keyOpen.value = localStorage.getItem('visionvt_key_openai') || '';
-    keyAnthropic.value = localStorage.getItem('visionvt_key_anthropic') || '';
-    keyGoogle.value = localStorage.getItem('visionvt_key_google') || '';
-    keyGitHub.value = localStorage.getItem('visionvt_key_github') || '';
-  }
-
-  saveBtn.addEventListener('click', ()=>{
-    localStorage.setItem('visionvt_key_openai', keyOpen.value.trim());
-    localStorage.setItem('visionvt_key_anthropic', keyAnthropic.value.trim());
-    localStorage.setItem('visionvt_key_google', keyGoogle.value.trim());
-    localStorage.setItem('visionvt_key_github', keyGitHub.value.trim());
-    alert('Keys saved locally. Keep them private.');
-  });
-
-  clearBtn.addEventListener('click', ()=>{
-    localStorage.removeItem('visionvt_key_openai');
-    localStorage.removeItem('visionvt_key_anthropic');
-    localStorage.removeItem('visionvt_key_google');
-    localStorage.removeItem('visionvt_key_github');
-    loadKeys();
-    alert('Keys cleared from localStorage.');
-  });
+  // AI keys were removed from the settings UI per request.
 
   // initial render
   renderSocials();
-  loadKeys();
 
   // Account username handling
   const accountInput = document.getElementById('account-username');
