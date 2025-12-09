@@ -4,7 +4,16 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>VisionVT — Dashboard</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+      /* Critical inline styles to ensure dashboard renders even if external CSS doesn't load */
+      html,body{height:100%;margin:0;font-family:Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;background:#061018;color:#dfe9f8}
+      .dashboard-root{display:flex;gap:16px;padding:18px}
+      .side-nav{width:220px}
+      .main-area{flex:1}
+      .card{background:rgba(255,255,255,0.02);padding:12px;border-radius:8px;margin-bottom:12px}
+      button, .tab, input[type="button"], input[type="submit"]{font-family:inherit}
+    </style>
   </head>
   <body>
     <div class="dashboard-root">
