@@ -81,7 +81,7 @@ main{margin-top:18px}
 .panel.active{display:block}
 pre{white-space:pre-wrap;background:rgba(0,0,0,0.02);padding:12px;border-radius:8px;overflow:auto}
 form{display:grid;gap:8px;max-width:420px}
-input{padding:8px;border-radius:6px;border:1px solid var(--border);background:rgba(255,255,255,0.5);color:var(--text)}
+input, textarea{padding:8px;border-radius:6px;border:1px solid var(--border);background:rgba(255,255,255,0.5);color:var(--text);font-family:inherit}
 .actions{margin-top:6px}
 button[type="submit"]{background:var(--accent);border:none;color:#042022;padding:8px 12px;border-radius:8px;cursor:pointer}
 .note{font-size:0.85rem;color:rgba(230,238,246,0.8)}

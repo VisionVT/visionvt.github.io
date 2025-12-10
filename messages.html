@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>VisionVT — Messages</title>
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+      /* Critical inline styles to ensure messages page renders */
+      html,body{height:100%;margin:0;font-family:Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;color:var(--text)}
+      .dashboard-root{display:flex;gap:16px;padding:18px}
+      .side-nav{width:220px}
+      .main-area{flex:1}
+      .card{background:var(--card);padding:12px;border-radius:8px;margin-bottom:12px;border:1px solid var(--border)}
+      button, .tab, input[type="button"], input[type="submit"]{font-family:inherit}
+    </style>
+  </head>
+  <body>
+    <div class="dashboard-root">
+      <aside class="side-nav" id="side-nav">
+        <button id="sidebar-toggle" class="sidebar-toggle" title="Toggle sidebar">☰</button>
+        <div class="brand">
+          <div class="avatar">VT</div>
+          <div class="brand-info">
+            <strong>VisionVT</strong>
+            <small>Creator</small>
+          </div>
+        </div>
+
+        <nav class="nav-list">
+          <a class="nav-item" href="dashboard.html" data-label="Dashboard"><span class="icon">🏠</span><span class="label">Dashboard</span></a>
+          <a class="nav-item active" href="messages.html" data-label="Messages"><span class="icon">💬</span><span class="label">Messages</span></a>
+          <a class="nav-item" href="settings.html" data-label="Settings"><span class="icon">⚙️</span><span class="label">Settings</span></a>
+        </nav>
+
+        <div class="side-footer">
+          <button id="logout-btn" class="logout">Log out</button>
+        </div>
+      </aside>
+
+      <div class="main-area">
+        <header>
+          <h1>Messages</h1>
+        </header>
+
+        <main>
+          <div class="messages-container">
+            <section class="card">
+              <h2>Send a Message</h2>
+              <form id="message-form">
+                <label for="recipient-username">Send to (username):</label>
+                <input id="recipient-username" placeholder="e.g., eastonvteggers" required />
+                <label for="message-text">Message:</label>
+                <textarea id="message-text" placeholder="Type your message..." required rows="4"></textarea>
+                <div class="actions">
+                  <button type="submit">Send Message</button>
+                </div>
+              </form>
+              <p id="send-result" style="margin-top:8px;"></p>
+            </section>
+
+            <section class="card">
+              <h2>Inbox</h2>
+              <div id="inbox-list">
+                <p style="color:var(--muted);">No messages yet.</p>
+              </div>
+            </section>
+
+            <section class="card">
+              <h2>Sent</h2>
+              <div id="sent-list">
+                <p style="color:var(--muted);">No sent messages.</p>
+              </div>
+            </section>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <script src="messages.js"></script>
+  </body>
+</html>
