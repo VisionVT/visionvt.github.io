@@ -84,11 +84,54 @@
   saveAccountBtn.addEventListener('click', ()=>{
     const v = (accountInput.value || '').trim();
     if(!v){ alert('Username cannot be empty'); return; }
+    // Validate preferred username exists in allowed users (if any)
+    const allowed = loadAllowedUsers();
+    if(Object.keys(allowed).length && !(v in allowed)){
+      if(!confirm('The username you set is not in the local allowed-users list. Save anyway?')) return;
+    }
     localStorage.setItem('visionvt_account_username', v);
     alert('Account username saved locally. Use this username to sign in.');
   });
 
   loadAccount();
+
+  // --- Allowed users (account management) ---
+  const addForm = document.getElementById('account-add-form');
+  const newUserInput = document.getElementById('new-username');
+  const newPassInput = document.getElementById('new-password');
+  const usersList = document.getElementById('allowed-users-list');
+
+  function loadAllowedUsers(){
+    try{ const raw = localStorage.getItem('visionvt_allowed_users'); return raw ? JSON.parse(raw) : {}; }catch(e){ return {}; }
+  }
+  function saveAllowedUsers(obj){ localStorage.setItem('visionvt_allowed_users', JSON.stringify(obj)); }
+
+  function renderAllowedUsers(){
+    const m = loadAllowedUsers();
+    usersList.innerHTML = '';
+    const keys = Object.keys(m);
+    if(keys.length === 0){ usersList.innerHTML = '<li><em>No local accounts defined.</em></li>'; return; }
+    keys.forEach((u)=>{
+      const li = document.createElement('li');
+      li.innerHTML = `<strong>${u}</strong> — <span style="font-family:monospace">${m[u]}</span> <button data-user="${u}">Remove</button>`;
+      usersList.appendChild(li);
+    });
+    usersList.querySelectorAll('button').forEach(b=>b.addEventListener('click', (e)=>{
+      const u = e.currentTarget.dataset.user; const o = loadAllowedUsers(); delete o[u]; saveAllowedUsers(o); renderAllowedUsers();
+    }));
+  }
+
+  addForm && addForm.addEventListener('submit', (e)=>{
+    e.preventDefault();
+    const u = (newUserInput.value||'').trim();
+    const p = (newPassInput.value||'').trim();
+    if(!u || !p) return alert('Please provide username and password');
+    const o = loadAllowedUsers();
+    if(u in o) return alert('That username already exists locally');
+    o[u] = p; saveAllowedUsers(o); newUserInput.value = ''; newPassInput.value = ''; newPassInput.value = ''; renderAllowedUsers();
+  });
+
+  renderAllowedUsers();
 
   // --- Theme controls ---
   const themeRadios = document.querySelectorAll('input[name="theme"]');

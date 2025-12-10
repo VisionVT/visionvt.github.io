@@ -61,7 +61,19 @@
             <input id="account-username" placeholder="username" />
             <div class="actions"><button id="save-account" type="button">Save username</button></div>
           </form>
-          <p class="note">Note: Passwords are currently managed by VisionVT and remain unchanged here.</p>
+          <p class="note">Note: Passwords are currently managed by VisionVT and remain unchanged here unless you manage accounts below.</p>
+
+          <div style="margin-top:12px;padding:10px;border:1px solid #ddd;border-radius:6px;">
+            <h3 style="margin:4px 0">Manage accounts</h3>
+            <p style="margin:4px 0">Add or remove prototype accounts stored locally (for testing only).</p>
+            <form id="account-add-form" style="margin-top:8px;">
+              <input id="new-username" placeholder="new username" required />
+              <input id="new-password" placeholder="password" required />
+              <div class="actions"><button type="submit">Add account</button></div>
+            </form>
+            <ul id="allowed-users-list" style="margin-top:8px"></ul>
+            <small style="display:block;margin-top:8px;color:#666">Accounts here are saved to your browser's localStorage under `visionvt_allowed_users`.</small>
+          </div>
         </section>
 
         <!-- AI keys removed per request: no AI settings shown here -->

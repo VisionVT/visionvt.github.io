@@ -21,13 +21,32 @@
 
   // --- Simple single-user login (client-side) ---
   // NOTE: This is intentionally minimal and client-side only. Do NOT use for sensitive accounts.
-  // The username and password below were provided by the user and are stored in this file.
-  // Lightweight login-only script: validates local credentials and redirects to dashboard.html
-  // Default account username can be changed in Settings (stored in localStorage as 'visionvt_account_username')
-  const DEFAULT_USERNAME = 'eastonvteggers';
-  const ALLOWED_PASSWORD = 'Creativity9918EE';
-  function getAllowedUsername(){
-    return localStorage.getItem('visionvt_account_username') || DEFAULT_USERNAME;
+  // Simple client-side user map: username -> password
+  // NOTE: This is intentionally minimal and client-side only. Do NOT use for sensitive accounts.
+  // Built-in defaults (used when no persisted users are present)
+  const DEFAULT_ALLOWED_USERS = {
+    'darwinxmacintosh': 'defaltpass',
+    'test123': 'pass'
+  };
+
+  function loadAllowedUsers(){
+    try{
+      const raw = localStorage.getItem('visionvt_allowed_users');
+      if(!raw) return DEFAULT_ALLOWED_USERS;
+      const parsed = JSON.parse(raw);
+      // Ensure parsed is an object
+      return (parsed && typeof parsed === 'object') ? parsed : DEFAULT_ALLOWED_USERS;
+    }catch(e){
+      return DEFAULT_ALLOWED_USERS;
+    }
+  }
+
+  // Load allowed users from storage (or use built-in defaults)
+  const ALLOWED_USERS = loadAllowedUsers();
+
+  // If a username is stored in Settings (localStorage), only that username may sign in.
+  function getPreferredUsername(){
+    return localStorage.getItem('visionvt_account_username') || null;
   }
 
   const form = document.getElementById('login-form');
@@ -38,17 +57,43 @@
     const username = document.getElementById('username').value.trim();
     const pass = document.getElementById('passphrase').value;
 
-    if(username !== getAllowedUsername()){
+    const preferred = getPreferredUsername();
+
+    // If a preferred username is stored, require that username and verify it exists
+    if(preferred){
+      if(username !== preferred){
+        result.textContent = 'Unknown username. If you need an account, click Sign up.';
+        result.style.color = 'salmon';
+        return;
+      }
+      if(!(preferred in ALLOWED_USERS)){
+        result.textContent = 'Unknown username. If you need an account, click Sign up.';
+        result.style.color = 'salmon';
+        return;
+      }
+      if(pass === ALLOWED_USERS[preferred]){
+        result.textContent = 'Welcome — signed in as ' + username + '! Redirecting...';
+        result.style.color = '#9fffcf';
+        localStorage.setItem('visionvt_logged_in_user', username);
+        window.location.href = 'dashboard.html';
+        return;
+      }
+      result.textContent = 'Incorrect password.';
+      result.style.color = 'salmon';
+      return;
+    }
+
+    // No preferred username: accept any username present in ALLOWED_USERS
+    if(!(username in ALLOWED_USERS)){
       result.textContent = 'Unknown username. If you need an account, click Sign up.';
       result.style.color = 'salmon';
       return;
     }
 
-    if(pass === ALLOWED_PASSWORD){
+    if(pass === ALLOWED_USERS[username]){
       result.textContent = 'Welcome — signed in as ' + username + '! Redirecting...';
       result.style.color = '#9fffcf';
       localStorage.setItem('visionvt_logged_in_user', username);
-      // redirect to separate dashboard page
       window.location.href = 'dashboard.html';
       return;
     }
